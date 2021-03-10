@@ -11,6 +11,12 @@ import java.io.IOException;
 
 @Component
 public class GithubProvider {
+
+    /**
+     * 用AccessTokenDTO中的信息从github上换取accesstoken
+     * @param gitAuthorizeDTO
+     * @return accessToken
+     */
     public String getAccessToken(AccessTokenDTO gitAuthorizeDTO)  {
         MediaType mediaType = MediaType.get("application/json; charset=utf-8");
         OkHttpClient client = new OkHttpClient();
@@ -28,10 +34,16 @@ public class GithubProvider {
         return null;
     }
 
+    /**
+     * 利用accessToken从github上换取user信息
+     * @param accessToken
+     * @return githubUser
+     */
     public GithubUser getUser(String accessToken) {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("https://api.github.com/user?access_token="+accessToken)
+                .url("https://api.github.com/user")
+                .header("Authorization","token "+accessToken)
                 .build();
         Response response = null;
         try {

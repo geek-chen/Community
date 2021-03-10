@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 public class PublishController {
     @GetMapping("/publish")
     public String publish() {
-        System.out.println("get");
         return "publish";
     }
 

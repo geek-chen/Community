@@ -18,6 +18,13 @@ public class QuestionService {
     private QuestionMapper questionMapper;
     @Autowired
     private UserMapper userMapper;
+
+    /**
+     * 问题分页展示逻辑
+     * @param page
+     * @param size
+     * @return
+     */
     public PaginationDTO list(Integer page, Integer size){
         Integer offset = size * (page - 1);
         List<Question> questions = questionMapper.list(offset, size);
