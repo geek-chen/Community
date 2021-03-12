@@ -10,6 +10,7 @@ public class PaginationDTO {
     private boolean hasNext;
     private boolean showEndPage;
     private Integer currentPage;
+    private Integer totalPage;
     private List<Integer> pages = new ArrayList<>();
 
     public List<QuestionDTO> getQuestions() {
@@ -68,9 +69,16 @@ public class PaginationDTO {
         this.pages = pages;
     }
 
+    public Integer getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(Integer totalPage) {
+        this.totalPage = totalPage;
+    }
+
     public void setPagination(Integer totalCount, Integer page, Integer size) {
         //根据总记录数算出总页数
-        Integer totalPage = 0;
         if(totalCount % size ==0) {
             totalPage = totalCount / size;
         } else {
@@ -85,7 +93,7 @@ public class PaginationDTO {
         this.currentPage = page;
         //计算要展示的页码
         pages.add(page);
-        for(int i = 1; i <= totalPage; i++){
+        for(int i = 1; i <= 3; i++){
             if(page - i > 0){
                 pages.add(0, page - i);
             }
