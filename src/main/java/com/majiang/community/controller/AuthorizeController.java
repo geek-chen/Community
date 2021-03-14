@@ -1,4 +1,5 @@
 package com.majiang.community.controller;
+import com.majiang.community.Service.UserService;
 import com.majiang.community.dto.AccessTokenDTO;
 import com.majiang.community.dto.GithubUser;
 import com.majiang.community.mapper.UserMapper;
@@ -30,6 +31,9 @@ public class AuthorizeController {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/callback")
     public String callback(@RequestParam(name="code") String code,
                            @RequestParam(name="state" ) String state,
@@ -50,16 +54,13 @@ public class AuthorizeController {
             String token = UUID.randomUUID().toString();
             user.setToken(token);
             user.setAvatar_url(githubUser.getAvatar_url());
-            user.setGmtCreat(System.currentTimeMillis());
-            user.setGmtModified(user.getGmtCreat());
-            userMapper.insert(user);
-            response.addCookie(new Cookie("token", token));
-            return "redirect:/";
-
-        } else {
-            //登陆失败，返回首页
-            return "redirect:/";
+            userService.createOrUpdate(user);
+            response.addCookie(new Cookie("token", user.getToken()));
         }
+        else {
+            //登陆失败，返回首页
+        }
+        return "redirect:/";
 
 
     }
