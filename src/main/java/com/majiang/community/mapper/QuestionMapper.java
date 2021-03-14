@@ -3,6 +3,7 @@ import com.majiang.community.model.Question;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -24,5 +25,11 @@ public interface QuestionMapper {
 
     @Select("select count(*) from question where creator = #{userId}")
     Integer countById(@Param(value = "userId") Integer userId);
+
+    @Update("update question set title = #{title}, description = #{description}, gmt_modified = #{gmt_modified}, tag = #{tag} where id = #{id}")
+    void update(Question question);
+
+
+
 }
 
