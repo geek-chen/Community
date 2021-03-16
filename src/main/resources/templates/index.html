@@ -18,7 +18,7 @@
                 <div class="media-left">
                     <a href="#">
                         <img class="media-object img-rounded"
-                             th:src="${question.getUser().getAvatar_url()}">
+                             th:src="${question.getUser().getAvatarUrl()}">
                     </a>
                 </div>
                 <div  class="media-body">
@@ -26,8 +26,8 @@
                         <a th:href="@{'/question/'+ ${question.id}}" th:text="${question.getTitle()}"></a>
                     </h4>
                     <span th:text="${question.getDescription()}"></span> <br>
-                    <span class="text-desc" ><span th:text="${question.getComment_count()}"></span> 个回复 ·
-                    <span th:text="${question.getView_count()}"></span>  次浏览 · <span th:text="${#dates.format(question.getGmt_creat(),'dd MMMM yyyy')}"></span> </span>
+                    <span class="text-desc" ><span th:text="${question.getCommentCount()}"></span> 个回复 ·
+                    <span th:text="${question.getViewCount()}"></span>  次浏览 · <span th:text="${#dates.format(question.getGmtModified(),'dd MMMM yyyy')}"></span> </span>
                 </div>
             </div>
             <nav aria-label="Page navigation">
@@ -35,7 +35,7 @@
                     <li th:if="${paginationDTO.showFirstPage}">
                         <a th:href="@{'/'}" aria-label="Previous">
                             <span aria-hidden="true">&lt;&lt;</span>
-                            </ath:>
+                            </a>
                     </li>
 
                     <li th:if="${paginationDTO.hasPrevious}">

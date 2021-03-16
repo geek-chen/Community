@@ -6,12 +6,12 @@ public class QuestionDTO {
     private Integer id;
     private String title;
     private String description;
-    private long gmt_creat;
-    private long gmt_modified;
+    private long gmtCreat;
+    private long gmtModified;
     private Integer creator;
-    private Integer comment_count;
-    private Integer like_count;
-    private Integer view_count;
+    private Integer commentCount;
+    private Integer likeCount;
+    private Integer viewCount;
     private String tag;
     User user;
 
@@ -39,20 +39,20 @@ public class QuestionDTO {
         this.description = description;
     }
 
-    public long getGmt_creat() {
-        return gmt_creat;
+    public long getGmtCreat() {
+        return gmtCreat;
     }
 
-    public void setGmt_creat(long gmt_creat) {
-        this.gmt_creat = gmt_creat;
+    public void setGmtCreat(long gmtCreat) {
+        this.gmtCreat = gmtCreat;
     }
 
-    public long getGmt_modified() {
-        return gmt_modified;
+    public long getGmtModified() {
+        return gmtModified;
     }
 
-    public void setGmt_modified(long gmt_modified) {
-        this.gmt_modified = gmt_modified;
+    public void setGmtModified(long gmtModified) {
+        this.gmtModified = gmtModified;
     }
 
     public Integer getCreator() {
@@ -63,28 +63,28 @@ public class QuestionDTO {
         this.creator = creator;
     }
 
-    public Integer getComment_count() {
-        return comment_count;
+    public Integer getCommentCount() {
+        return commentCount;
     }
 
-    public void setComment_count(Integer comment_count) {
-        this.comment_count = comment_count;
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
     }
 
-    public Integer getLike_count() {
-        return like_count;
+    public Integer getLikeCount() {
+        return likeCount;
     }
 
-    public void setLike_count(Integer like_count) {
-        this.like_count = like_count;
+    public void setLikeCount(Integer likeCount) {
+        this.likeCount = likeCount;
     }
 
-    public Integer getView_count() {
-        return view_count;
+    public Integer getViewCount() {
+        return viewCount;
     }
 
-    public void setView_count(Integer view_count) {
-        this.view_count = view_count;
+    public void setViewCount(Integer viewCount) {
+        this.viewCount = viewCount;
     }
 
     public String getTag() {
