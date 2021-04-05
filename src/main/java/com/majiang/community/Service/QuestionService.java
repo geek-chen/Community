@@ -3,6 +3,7 @@ import com.majiang.community.dto.PaginationDTO;
 import com.majiang.community.dto.QuestionDTO;
 import com.majiang.community.exception.CustomizeErrorCode;
 import com.majiang.community.exception.CustomizeException;
+import com.majiang.community.mapper.QuestionExtMapper;
 import com.majiang.community.mapper.QuestionMapper;
 import com.majiang.community.mapper.UserMapper;
 import com.majiang.community.model.Question;
@@ -20,6 +21,8 @@ import java.util.List;
 public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
     @Autowired
     private UserMapper userMapper;
 
@@ -81,6 +84,7 @@ public class QuestionService {
 
     public QuestionDTO getById(Integer id) {
         QuestionDTO questionDTO = new QuestionDTO();
+        incViewCount(id);
         Question question = questionMapper.selectByPrimaryKey(id);
         if (question == null) {
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
@@ -89,6 +93,13 @@ public class QuestionService {
         BeanUtils.copyProperties(question, questionDTO);
         questionDTO.setUser(user);
         return questionDTO;
+    }
+
+    public void incViewCount(Integer id) {
+        Question question = new Question();
+        question.setViewCount(1);
+        question.setId(id);
+        questionExtMapper.incViewCount(question);
     }
 
     public void createOrUpdate(Question question) {
