@@ -54,7 +54,7 @@ public class QuestionService {
     }
 
 
-    public PaginationDTO list(int userId, Integer page, Integer size) {
+    public PaginationDTO list(Long userId, Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
         QuestionExample example = new QuestionExample();
         example.createCriteria()
@@ -82,7 +82,7 @@ public class QuestionService {
         return  paginationDTO;
     }
 
-    public QuestionDTO getById(Integer id) {
+    public QuestionDTO getById(Long id) {
         QuestionDTO questionDTO = new QuestionDTO();
         incViewCount(id);
         Question question = questionMapper.selectByPrimaryKey(id);
@@ -95,7 +95,7 @@ public class QuestionService {
         return questionDTO;
     }
 
-    public void incViewCount(Integer id) {
+    public void incViewCount(Long id) {
         Question question = new Question();
         question.setViewCount(1);
         question.setId(id);
@@ -104,10 +104,15 @@ public class QuestionService {
 
     public void createOrUpdate(Question question) {
         if (question.getId() == null) {
+            //创建
             question.setGmtCreat(System.currentTimeMillis());
             question.setGmtModified(question.getGmtCreat());
+            question.setCommentCount(0);
+            question.setViewCount(0);
+            question.setLikeCount(0);
             questionMapper.insert(question);
         }else {
+            //更新
             question.setGmtModified(System.currentTimeMillis());
             Question updateQuestion = new Question();
             updateQuestion.setGmtModified(System.currentTimeMillis());
