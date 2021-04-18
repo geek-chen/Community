@@ -3,23 +3,23 @@ package com.majiang.community.dto;
 import com.majiang.community.model.User;
 
 public class QuestionDTO {
-    private Integer id;
+    private Long id;
     private String title;
     private String description;
     private long gmtCreat;
     private long gmtModified;
-    private Integer creator;
+    private Long creator;
     private Integer commentCount;
     private Integer likeCount;
     private Integer viewCount;
     private String tag;
     User user;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,11 +55,11 @@ public class QuestionDTO {
         this.gmtModified = gmtModified;
     }
 
-    public Integer getCreator() {
+    public Long getCreator() {
         return creator;
     }
 
-    public void setCreator(Integer creator) {
+    public void setCreator(Long creator) {
         this.creator = creator;
     }
 
